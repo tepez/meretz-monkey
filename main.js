@@ -21,18 +21,32 @@ setTimeout(main, 1500);
 
 function main() {
   $(document).ready(function () {
-    var classes = {
-      '0': 'red',
-      '1': 'red',
-      '2': 'yellow',
-      '3': 'green'
+    var statusClasses = {
+      '0': 'bg-danger',
+      '1': 'bg-warning',
+      '2': 'bg-warning',
+      '3': 'bg-success'
+    };
+    var typeClasses = {
+
     };
 
 
     jQuery('table.table-bordered.table-hover > tbody > tr').each(function () {
       var trEl = $(this),
-        statusEl = trEl.find('td').eq(2);
-      statusEl.css({'background-color': classes[parseInt(statusEl.text())]});
+        statusEl = trEl.find('td').eq(2),
+        typeEl = trEl.find('td').eq(0);
+
+      var statusClass = statusClasses[parseInt(statusEl.text())];
+      if (statusClass) {
+        statusEl.addClass(statusClass);
+      }
+
+      var typeClass = typeClasses[parseInt(typeEl.text())];
+      if (typeClass) {
+        typeEl.addClass(typeClass);
+      }
+
 
     });
 
